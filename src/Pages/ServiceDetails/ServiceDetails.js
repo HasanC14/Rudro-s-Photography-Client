@@ -41,7 +41,7 @@ const ServiceDetails = () => {
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
-  console.log(Reviews);
+
   return (
     <div className="max-w-screen-xl mx-auto">
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4 m-10">
