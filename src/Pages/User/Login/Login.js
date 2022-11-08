@@ -4,7 +4,6 @@ import swal from "sweetalert";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider";
-import "./Login.css";
 
 const Login = () => {
   const { Login, LoginWithGoogle, LoginWithGitHub } = useContext(AuthContext);
