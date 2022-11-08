@@ -50,6 +50,15 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <div className="flex justify-center">
+        <div>
+          <Link to={"/Services"} className="w-full">
+            <button className="btn btn-ghost text-white">
+              See All Services
+            </button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
