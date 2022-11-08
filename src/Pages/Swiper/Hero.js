@@ -47,7 +47,7 @@ const Hero = () => {
 
             <div className="mt-5">
               <button className="px-8 py-3 font-bold rounded-full bg-gray-100 text-gray-800">
-                <Link to={"/appointment"}>See Services</Link>
+                <Link to={"/Services"}>See Services</Link>
               </button>
             </div>
           </div>
@@ -63,7 +63,7 @@ const Hero = () => {
 
             <div className="mt-5">
               <button className="px-8 py-3 font-bold rounded-full bg-gray-100 text-gray-800 ">
-                <Link to={"/appointment"}>See Services</Link>
+                <Link to={"/Services"}>See Services</Link>
               </button>
             </div>
           </div>
@@ -79,7 +79,7 @@ const Hero = () => {
 
             <div className="mt-5">
               <button className="px-8 py-3 font-bold rounded-full bg-gray-100 text-gray-800 ">
-                <Link to={"/appointment"}>See Services</Link>
+                <Link to={"/Services"}>See Services</Link>
               </button>
             </div>
           </div>

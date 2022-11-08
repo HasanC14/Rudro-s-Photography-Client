@@ -1,0 +1,14 @@
+.swal-modal {
+    background-color: rgb(17 24 39);
+  }
+.swal-title {
+    color: #A78BFA;
+  }
+.swal-button {
+    padding: 7px 19px;
+    border-radius: 2px;
+    background-color: rgb(167 139 250);
+    font-size: 12px;
+    border: 1px solid rgb(167 139 250);
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+  }
