@@ -47,7 +47,7 @@ const Header = () => {
             </li>
             {User?.uid ? (
               <li>
-                <Link to={"/AddServices"}>Add Services</Link>
+                <Link to={"/AddService"}>Add Service</Link>
               </li>
             ) : (
               <>
@@ -60,33 +60,37 @@ const Header = () => {
               </>
             )}
           </ul>
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              {User?.uid ? (
-                <div className="rounded-full">
-                  <img src={User.photoURL} alt="" />
-                </div>
-              ) : (
-                <div className="rounded-full">
-                  <FaRegUser></FaRegUser>
-                </div>
-              )}
-            </label>
-            <ul
-              tabIndex={0}
-              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <p className="bg-gray-800">{User?.displayName}</p>
-              </li>
-              <li>
-                <Link to={"/MyReviews"}>My Reviews</Link>
-              </li>
-              <li>
-                <button onClick={HandleLogout}>Logout</button>
-              </li>
-            </ul>
-          </div>
+          {User?.uid ? (
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                {User?.photoURL ? (
+                  <div className="rounded-full">
+                    <img src={User.photoURL} alt="" />
+                  </div>
+                ) : (
+                  <div className="rounded-full">
+                    <FaRegUser></FaRegUser>
+                  </div>
+                )}
+              </label>
+              <ul
+                tabIndex={0}
+                className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+              >
+                <p className="text-center font-bold  bg-slate-800 rounded-lg p-5">
+                  {User?.displayName}
+                </p>
+                <li>
+                  <Link to={"/MyReviews"}>My Reviews</Link>
+                </li>
+                <li>
+                  <button onClick={HandleLogout}>Logout</button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

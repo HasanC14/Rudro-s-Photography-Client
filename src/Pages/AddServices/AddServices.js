@@ -1,6 +1,34 @@
-import React from "react";
+import swal from "sweetalert";
 
 const AddServices = () => {
+  const HandleForm = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const title = form.title.value;
+    const price = form.price.value;
+    const description = form.description.value;
+    const img = form.image.value;
+    const service = {
+      title: title,
+      img: img,
+      price: price,
+      description: description,
+    };
+
+    fetch("http://localhost:5000/AddService", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(service),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        swal({
+          title: "Service Added",
+          button: "OK",
+        });
+        form.reset();
+      });
+  };
   return (
     <div>
       <section className="p-6  dark:text-gray-50 max-w-screen-xl mx-auto">
@@ -9,11 +37,14 @@ const AddServices = () => {
             Add Your Custom Service
           </p>
         </div>
-        <form className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
+        <form
+          className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid"
+          onSubmit={HandleForm}
+        >
           <fieldset className="rounded-md shadow-sm ">
             <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
               <div className="col-span-full sm:col-span-3">
-                <label for="title" className="text-2xl">
+                <label htmlFor="title" className="text-2xl">
                   Title
                 </label>
                 <input
@@ -25,7 +56,7 @@ const AddServices = () => {
               </div>
 
               <div className="col-span-full sm:col-span-3">
-                <label for="email" className="text-2xl">
+                <label htmlFor="email" className="text-2xl">
                   Price
                 </label>
                 <input
@@ -36,7 +67,7 @@ const AddServices = () => {
                 />
               </div>
               <div className="col-span-full">
-                <label for="image" className="text-2xl">
+                <label htmlFor="image" className="text-2xl">
                   Image URL
                 </label>
                 <input
@@ -47,7 +78,7 @@ const AddServices = () => {
                 />
               </div>
               <div className="col-span-full">
-                <label for="Description" className="text-2xl">
+                <label htmlFor="Description" className="text-2xl">
                   Description
                 </label>
                 <textarea

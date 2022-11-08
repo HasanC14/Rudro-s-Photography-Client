@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../../Images/Logo/logo.png";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Context/AuthProvider";
 
 const Footer = () => {
+  const { User } = useContext(AuthContext);
   return (
     <div className="bg-gray-800">
       <footer className="dark:bg-gray-800 dark:text-gray-400  max-w-screen-xl mx-auto">
@@ -31,12 +33,25 @@ const Footer = () => {
               <li>
                 <Link to={"/Services"}>Services</Link>
               </li>
-              <li>
-                <Link to={"/Login"}>Login</Link>
-              </li>
-              <li>
-                <Link to={"/Register"}>Register</Link>
-              </li>
+              {User?.uid ? (
+                <>
+                  <li>
+                    <Link to={"/AddService"}>Add Service</Link>
+                  </li>
+                  <li>
+                    <Link to={"/MyReviews"}>My Reviews</Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to={"/Login"}>Login</Link>
+                  </li>
+                  <li>
+                    <Link to={"/Register"}>Register</Link>
+                  </li>
+                </>
+              )}
             </ul>
           </ul>
           <div className="flex flex-col justify-center pt-6 lg:pt-0">

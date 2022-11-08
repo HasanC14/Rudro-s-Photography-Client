@@ -46,9 +46,11 @@ const Hero = () => {
                 AFFORDABLE PRICING
               </div>
               <div className="mt-5">
-                <button className="px-8 py-3 font-bold rounded-full bg-gray-100 text-gray-800">
-                  <Link to={"/Services"}>See Services</Link>
-                </button>
+                <Link to={"/Services"}>
+                  <button className="px-8 py-3 font-bold rounded-full bg-gray-100 text-gray-800">
+                    See Services
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

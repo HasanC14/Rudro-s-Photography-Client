@@ -21,7 +21,7 @@ export const routes = createBrowserRouter([
       { path: "/Login", element: <Login></Login> },
       { path: "/Register", element: <Register></Register> },
       { path: "/MyReviews", element: <MyReviews></MyReviews> },
-      { path: "/AddServices", element: <AddServices></AddServices> },
+      { path: "/AddService", element: <AddServices></AddServices> },
       {
         path: "/Services/:id",
         element: <ServiceDetails></ServiceDetails>,
