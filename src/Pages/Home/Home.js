@@ -1,10 +1,10 @@
 import React from "react";
-import Swiper from "../Swiper/Swiper";
+import Hero from "../Swiper/Hero";
 
 const Home = () => {
   return (
     <div>
-      <Swiper></Swiper>
+      <Hero></Hero>
     </div>
   );
 };
