@@ -1,7 +1,12 @@
 import React from "react";
+import Swiper from "../Swiper/Swiper";
 
 const Home = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Swiper></Swiper>
+    </div>
+  );
 };
 
 export default Home;
