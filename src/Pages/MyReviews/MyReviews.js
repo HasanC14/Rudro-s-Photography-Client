@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
-import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
+import { FaCheckCircle } from "react-icons/fa";
 import swal from "sweetalert";
 const MyReviews = () => {
   const { User } = useContext(AuthContext);
   const [Reviews, setReviews] = useState([]);
+  const [NewReviews, setNewReviews] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/MyReviews/?Username=${User?.displayName}`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [User]);
+
   const HandleDelete = (id) => {
     swal("Are you sure you want to delete").then((value) => {
       if (value === true) {
@@ -50,11 +52,22 @@ const MyReviews = () => {
       }
     });
   };
+  const handleChange = (event) => {
+    setNewReviews(event.target.value);
+  };
+  const HandleUpdate = (id) => {
+    fetch(`http://localhost:5000/UpdateReview/${id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ UpdatedReview: NewReviews }),
+    }).then((res) => res.json());
+  };
+
   return (
     <div className="max-w-screen-xl mx-auto mt-10 mb-10">
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4 ">
         {Reviews.map((review) => (
-          <div>
+          <div key={review._id}>
             <div className="p-6 sm:p-12 dark:bg-gray-800 dark:text-gray-100 rounded-2xl">
               <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
                 <div className="flex flex-col">
@@ -71,17 +84,40 @@ const MyReviews = () => {
                     Time: {review?.Time.split("T")[1].split(":")[0]}.
                     {review?.Time.split("T")[1].split(":")[1]}
                   </p>
-                  <div className="flex justify-between mt-5">
-                    <div>
-                      <button>
-                        <FaRegEdit></FaRegEdit>
-                      </button>
-                    </div>
-                    <div>
-                      <button onClick={() => HandleDelete(review._id)}>
-                        <FaTrashAlt></FaTrashAlt>
-                      </button>
-                    </div>
+                  <div>
+                    <button
+                      onClick={() => HandleDelete(review._id)}
+                      className="text-lg hover:underline"
+                    >
+                      Delete Review
+                    </button>
+                  </div>
+
+                  <div className="flex justify-between mt-2">
+                    <form className="w-full space-y-1 dark:text-gray-100">
+                      <label
+                        htmlFor="UpdatedReview"
+                        className="block text-lg font-medium"
+                      >
+                        Edit Review
+                      </label>
+                      <div className="flex">
+                        <textarea
+                          type="text"
+                          name="UpdatedReview"
+                          id="UpdatedReview"
+                          onChange={handleChange}
+                          className="flex flex-1 text-right border sm:text-sm rounded-l-md focus:ring-inset dark:border-gray-700 dark:text-gray-100 dark:bg-gray-800 focus:ring-gray-400"
+                        />
+                        <button
+                          type="submit"
+                          onClick={() => HandleUpdate(review._id)}
+                        >
+                          <FaCheckCircle className="w-10 text-2xl" />
+                        </button>
+                      </div>
+                    </form>
+                    <div></div>
                   </div>
                 </div>
               </div>
