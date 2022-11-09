@@ -85,16 +85,16 @@ const MyReviews = () => {
                     Time: {review?.Time.split("T")[1].split(":")[0]}.
                     {review?.Time.split("T")[1].split(":")[1]}
                   </p>
-                  <div className="text-2xl flex justify-between mt-5 ">
+                  <div className="text-xl flex justify-between mt-5 ">
                     <button
                       onClick={() => HandleDelete(review._id)}
-                      className="border-2 border-white rounded-full p-2"
+                      className="border-2 border-white rounded-full p-2 hover:bg-white hover:text-gray-800"
                     >
                       <FaTrash></FaTrash>
                     </button>
                     <div className="flex justify-between mt-2">
                       <label htmlFor="my-modal-3">
-                        <div className="border-2 border-white rounded-full p-2">
+                        <div className="border-2 border-white rounded-full p-2 hover:bg-white hover:text-gray-800">
                           <FaEdit></FaEdit>
                         </div>
                       </label>

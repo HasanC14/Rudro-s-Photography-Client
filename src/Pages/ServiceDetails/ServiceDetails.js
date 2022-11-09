@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ImageViewer } from "react-image-viewer-dv";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import swal from "sweetalert";
 import { AuthContext } from "../../Context/AuthProvider";
 
@@ -9,6 +9,7 @@ const ServiceDetails = () => {
   const { User } = useContext(AuthContext);
   const { title, img, description, price, _id } = service;
   const [Reviews, setReviews] = useState([]);
+  const [Loading, setLoading] = useState(true);
   const HandleForm = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -40,14 +41,16 @@ const ServiceDetails = () => {
   useEffect(() => {
     fetch(`http://localhost:5000/reviews/?id=${_id}`)
       .then((res) => res.json())
-      .then((data) => setReviews(data));
+      .then((data) => {
+        setReviews(data);
+        setLoading(false);
+      });
   }, []);
-
   return (
     <div className="max-w-screen-xl mx-auto">
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4 m-10">
         <section className="Service">
-          <div className="max-w-lg p-4 shadow-md dark:bg-gray-800 dark:text-gray-100">
+          <div className="max-w-lg p-4 rounded-lg shadow-md dark:bg-gray-800 dark:text-gray-100">
             <div className="space-y-4">
               <div className="space-y-2">
                 <ImageViewer>
@@ -67,45 +70,65 @@ const ServiceDetails = () => {
           </div>
         </section>
         <section className="Reviews">
-          <div className="p-6 sm:p-12 dark:bg-gray-800 dark:text-gray-100 mb-4">
+          <div className="p-6 sm:p-12 rounded-lg  dark:bg-gray-800 dark:text-gray-100 mb-4">
             <div className=" w-full">
-              <label className="label text-center text-2xl">
-                Give an Honest Review
-              </label>
-              <form onSubmit={HandleForm}>
-                <textarea
-                  type="text"
-                  name="review"
-                  placeholder="Type here"
-                  className="input input-bordered w-full "
-                />
-                <button type="submit" className="btn btn-ghost w-full text-2xl">
-                  Post
-                </button>
-              </form>
+              {User ? (
+                <form onSubmit={HandleForm}>
+                  <label className="label text-center text-2xl">
+                    Give an Honest Review
+                  </label>
+                  <textarea
+                    type="text"
+                    name="review"
+                    placeholder="Type here"
+                    className="input input-bordered w-full "
+                  />
+                  <button
+                    type="submit"
+                    className="btn btn-ghost w-full text-2xl"
+                  >
+                    Post
+                  </button>
+                </form>
+              ) : (
+                <p className="text-center text-2xl">
+                  <Link to={"/Login"} className="hover:text-gray-400 underline">
+                    Login
+                  </Link>{" "}
+                  First to Add Review
+                </p>
+              )}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-4">
-            {Reviews.map((review) => (
-              <div>
-                <div className="p-6 sm:p-12 dark:bg-gray-800 dark:text-gray-100">
-                  <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
-                    <img
-                      src={review?.UserImage}
-                      alt="User_Image"
-                      className="self-center flex-shrink-0 w-12 h-12 border rounded-full md:justify-self-start dark:bg-gray-500 dark:border-gray-700"
-                    />
-                    <div className="flex flex-col">
-                      <h4 className="text-lg font-semibold text-center md:text-left">
-                        {review?.Username}
-                      </h4>
-                      <p className="dark:text-gray-400">{review?.UserReview}</p>
+          <div className="grid grid-cols-1 gap-4 ">
+            {Loading ? (
+              <div className="flex justify-center">
+                <div className="w-12 h-12 border-8 border-dashed rounded-full animate-spin dark:border-gray-800"></div>
+              </div>
+            ) : (
+              Reviews.map((review) => (
+                <div>
+                  <div className="p-6 sm:p-12 dark:bg-gray-800 dark:text-gray-100 rounded-lg ">
+                    <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
+                      <img
+                        src={review?.UserImage}
+                        alt="User_Image"
+                        className="self-center flex-shrink-0 w-12 h-12 border rounded-full md:justify-self-start dark:bg-gray-500 dark:border-gray-700"
+                      />
+                      <div className="flex flex-col">
+                        <h4 className="text-lg font-semibold text-center md:text-left">
+                          {review?.Username}
+                        </h4>
+                        <p className="dark:text-gray-400">
+                          {review?.UserReview}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </section>
       </div>

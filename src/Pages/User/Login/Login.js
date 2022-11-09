@@ -33,7 +33,6 @@ const Login = () => {
   const HandleGoogle = () => {
     LoginWithGoogle()
       .then((result) => {
-        console.log(result);
         navigate(from, { replace: true });
         swal({
           title: "Login Successful",
