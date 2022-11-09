@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle, FaTrash, FaEdit } from "react-icons/fa";
 import swal from "sweetalert";
 const MyReviews = () => {
   const { User } = useContext(AuthContext);
@@ -52,6 +52,7 @@ const MyReviews = () => {
       }
     });
   };
+
   const handleChange = (event) => {
     setNewReviews(event.target.value);
   };
@@ -84,40 +85,59 @@ const MyReviews = () => {
                     Time: {review?.Time.split("T")[1].split(":")[0]}.
                     {review?.Time.split("T")[1].split(":")[1]}
                   </p>
-                  <div>
+                  <div className="text-2xl flex justify-between mt-5 ">
                     <button
                       onClick={() => HandleDelete(review._id)}
-                      className="text-lg hover:underline"
+                      className="border-2 border-white rounded-full p-2"
                     >
-                      Delete Review
+                      <FaTrash></FaTrash>
                     </button>
-                  </div>
-
-                  <div className="flex justify-between mt-2">
-                    <form className="w-full space-y-1 dark:text-gray-100">
-                      <label
-                        htmlFor="UpdatedReview"
-                        className="block text-lg font-medium"
-                      >
-                        Edit Review
+                    <div className="flex justify-between mt-2">
+                      <label htmlFor="my-modal-3">
+                        <div className="border-2 border-white rounded-full p-2">
+                          <FaEdit></FaEdit>
+                        </div>
                       </label>
-                      <div className="flex">
-                        <textarea
-                          type="text"
-                          name="UpdatedReview"
-                          id="UpdatedReview"
-                          onChange={handleChange}
-                          className="flex flex-1 text-right border sm:text-sm rounded-l-md focus:ring-inset dark:border-gray-700 dark:text-gray-100 dark:bg-gray-800 focus:ring-gray-400"
-                        />
-                        <button
-                          type="submit"
-                          onClick={() => HandleUpdate(review._id)}
-                        >
-                          <FaCheckCircle className="w-10 text-2xl" />
-                        </button>
+                      <input
+                        type="checkbox"
+                        id="my-modal-3"
+                        className="modal-toggle"
+                      />
+                      <div className="modal">
+                        <div className="modal-box relative">
+                          <label
+                            htmlFor="my-modal-3"
+                            className="btn btn-sm btn-circle absolute right-2 top-2"
+                          >
+                            ✕
+                          </label>
+                          <form className="w-full space-y-1 dark:text-gray-100">
+                            <label
+                              htmlFor="UpdatedReview"
+                              className="block text-lg font-medium"
+                            >
+                              Edit Review
+                            </label>
+                            <div className="flex">
+                              <textarea
+                                type="text"
+                                name="UpdatedReview"
+                                id="UpdatedReview"
+                                onChange={handleChange}
+                                className="flex flex-1 text-right border sm:text-sm rounded-l-md focus:ring-inset dark:border-gray-700 dark:text-gray-100 dark:bg-gray-800 focus:ring-gray-400"
+                              />
+                              <button
+                                type="submit"
+                                onClick={() => HandleUpdate(review._id)}
+                              >
+                                <FaCheckCircle className="w-10 text-2xl" />
+                              </button>
+                            </div>
+                          </form>
+                        </div>
                       </div>
-                    </form>
-                    <div></div>
+                      <div></div>
+                    </div>
                   </div>
                 </div>
               </div>
