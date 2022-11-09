@@ -3,9 +3,9 @@ import React from "react";
 const Faq = () => {
   return (
     <div>
-      <section className="text-2xl dark:text-gray-100">
+      <section className="md:text-2xl text-lg dark:text-gray-100">
         <div className="container flex flex-col justify-center p-4 mx-auto md:p-8">
-          <h2 className="mb-12 text-4xl font-bold leading-none text-center sm:text-5xl">
+          <h2 className="mb-12 md:text-4xl text-2xl font-bold leading-none text-center sm:text-5xl">
             Frequently Asked Questions
           </h2>
           <div className="flex flex-col divide-y sm:px-8 lg:px-12 xl:px-32 divide-gray-700">

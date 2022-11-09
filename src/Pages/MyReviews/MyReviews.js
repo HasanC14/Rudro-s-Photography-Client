@@ -90,14 +90,15 @@ const MyReviews = () => {
                       onClick={() => HandleDelete(review._id)}
                       className="border-2 border-white rounded-full p-2 hover:bg-white hover:text-gray-800"
                     >
-                      <FaTrash></FaTrash>
+                      <FaTrash className="w-7"></FaTrash>
                     </button>
                     <div className="flex justify-between mt-2">
                       <label htmlFor="my-modal-3">
-                        <div className="border-2 border-white rounded-full p-2 hover:bg-white hover:text-gray-800">
+                        <div className="border-2  border-white rounded-full p-2 hover:bg-white hover:text-gray-800">
                           <FaEdit></FaEdit>
                         </div>
                       </label>
+
                       <input
                         type="checkbox"
                         id="my-modal-3"

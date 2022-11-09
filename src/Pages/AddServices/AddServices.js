@@ -1,6 +1,10 @@
 import swal from "sweetalert";
+import { Helmet } from "react-helmet";
 
 const AddServices = () => {
+  <Helmet>
+    <title>Blog</title>
+  </Helmet>;
   const HandleForm = (event) => {
     event.preventDefault();
     const form = event.target;

@@ -1,6 +1,10 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 const Blog = () => {
+  <Helmet>
+    <title>Blog</title>
+  </Helmet>;
   return (
     <div className="md:mb-20 max-w-screen-xl mx-auto ">
       <div className="md:mb-12 md:mt-10">

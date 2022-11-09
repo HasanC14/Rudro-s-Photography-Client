@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Blog from "../Blog/Blog";
 import Faq from "../Faq/Faq";
 import Features from "../Features/Features";
 import Hero from "../Swiper/Hero";
 
 const Home = () => {
+  <Helmet>
+    <title>Home</title>
+  </Helmet>;
   const [Services, SetServices] = useState([]);
 
   useEffect(() => {

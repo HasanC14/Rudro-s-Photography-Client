@@ -14,6 +14,13 @@ const ServiceDetails = () => {
     event.preventDefault();
     const form = event.target;
     const review = form.review.value;
+    if (!review) {
+      swal({
+        title: "Type Something First",
+        button: "OK",
+      });
+      return;
+    }
     const ReviewInfo = {
       ServiceID: _id,
       Username: User?.displayName,
@@ -73,22 +80,28 @@ const ServiceDetails = () => {
           <div className="p-6 sm:p-12 rounded-lg  dark:bg-gray-800 dark:text-gray-100 mb-4">
             <div className=" w-full">
               {User ? (
-                <form onSubmit={HandleForm}>
-                  <label className="label text-center text-2xl">
+                <form
+                  onSubmit={HandleForm}
+                  className="w-full space-y-1 dark:text-gray-100"
+                >
+                  <label for="price" className="block text-2xl font-medium">
                     Give an Honest Review
                   </label>
-                  <textarea
-                    type="text"
-                    name="review"
-                    placeholder="Type here"
-                    className="input input-bordered w-full "
-                  />
-                  <button
-                    type="submit"
-                    className="btn btn-ghost w-full text-2xl"
-                  >
-                    Post
-                  </button>
+                  <div className="flex">
+                    <textarea
+                      type="text"
+                      name="review"
+                      placeholder="Type here"
+                      id="price"
+                      className="flex flex-1 text-right border sm:text-sm rounded-l-md focus:ring-inset dark:border-gray-700 dark:text-gray-100 dark:bg-gray-800 focus:ring-violet-400"
+                    />
+                    <button
+                      type="submit"
+                      className="flex items-center px-3  sm:text-sm rounded-r-md dark:bg-gray-700 hover:text-gray-700 hover:bg-white text-xl font-bold"
+                    >
+                      Post
+                    </button>
+                  </div>
                 </form>
               ) : (
                 <p className="text-center text-2xl">
@@ -117,10 +130,17 @@ const ServiceDetails = () => {
                         className="self-center flex-shrink-0 w-12 h-12 border rounded-full md:justify-self-start dark:bg-gray-500 dark:border-gray-700"
                       />
                       <div className="flex flex-col">
-                        <h4 className="text-lg font-semibold text-center md:text-left">
+                        <h3 className="text-lg font-semibold text-center md:text-left">
                           {review?.Username}
-                        </h4>
-                        <p className="dark:text-gray-400">
+                        </h3>
+                        <p className="dark:text-gray-400 text-xs">
+                          {review?.Time.split("T")[1].split(":")[0]}.
+                          {review?.Time.split("T")[1].split(":")[1]} ({" "}
+                          {review?.Time.split("T")[0]})
+                        </p>
+                        <p className="dark:text-gray-400 text-xs"></p>
+
+                        <p className="dark:text-gray-400 text-lg">
                           {review?.UserReview}
                         </p>
                       </div>

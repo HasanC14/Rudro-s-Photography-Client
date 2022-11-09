@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ImageViewer } from "react-image-viewer-dv";
 
 const Services = () => {
   const [Services, SetServices] = useState([]);
@@ -26,28 +27,32 @@ const Services = () => {
           ) : (
             Services.map((Service) => (
               <div
-                className="card w-96 bg-base-100 shadow-xl image-full"
                 key={Service._id}
+                className="max-w-xs p-6 rounded-md shadow-md dark:bg-gray-800 dark:text-gray-50"
               >
-                <figure>
-                  <img src={Service.img} alt="Service_Image" />
-                </figure>
-                <div className="card-body ">
-                  <h2 className="card-title text-white text-4xl">
+                <ImageViewer>
+                  <img
+                    src={Service.img}
+                    alt=""
+                    className="object-cover object-center w-full rounded-md h-72 dark:bg-gray-500"
+                  />
+                </ImageViewer>
+                <div className="mt-6 mb-2">
+                  <span className="block text-lg font-medium tracking-widest uppercase dark:text-gray-400">
+                    {Service.price}
+                  </span>
+                  <h2 className="text-xl font-semibold tracking-wide">
                     {Service.title}
                   </h2>
-                  <p className="text-white">
-                    {Service.description.slice(0, 100) + "..."}
-                  </p>
-                  <p className="text-white text-3xl">Price: {Service.price}</p>
-                  <div className="card-actions justify-end ">
-                    <Link to={`/Services/${Service._id}`} className="w-full">
-                      <button className="btn  text-white">
-                        See Full Details
-                      </button>
-                    </Link>
-                  </div>
                 </div>
+                <p className="dark:text-gray-100">
+                  {Service.description.slice(0, 100) + "..."}
+                </p>
+                <Link to={`/Services/${Service._id}`} className="w-full">
+                  <button className=" hover:underline hover:text-gray-400 text-white text-xl">
+                    See Full Details
+                  </button>
+                </Link>
               </div>
             ))
           )}
