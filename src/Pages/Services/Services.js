@@ -25,7 +25,7 @@ const Services = () => {
               key={Service._id}
             >
               <figure>
-                <img src={Service.img} alt="Shoes" />
+                <img src={Service.img} alt="Service_Image" />
               </figure>
               <div className="card-body ">
                 <h2 className="card-title text-white text-4xl">

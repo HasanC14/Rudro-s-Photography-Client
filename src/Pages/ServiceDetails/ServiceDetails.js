@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { ImageViewer } from "react-image-viewer-dv";
 import { useLoaderData } from "react-router-dom";
 import swal from "sweetalert";
 import { AuthContext } from "../../Context/AuthProvider";
@@ -49,11 +50,13 @@ const ServiceDetails = () => {
           <div className="max-w-lg p-4 shadow-md dark:bg-gray-800 dark:text-gray-100">
             <div className="space-y-4">
               <div className="space-y-2">
-                <img
-                  src={img}
-                  alt="Service_Image"
-                  className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500"
-                />
+                <ImageViewer>
+                  <img
+                    src={img}
+                    alt="Service_Image"
+                    className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500"
+                  />
+                </ImageViewer>
               </div>
               <div className="space-y-2 text-gray-400">
                 <h3 className="text-4xl font-bold ">{title}</h3>
@@ -89,7 +92,7 @@ const ServiceDetails = () => {
                 <div className="p-6 sm:p-12 dark:bg-gray-800 dark:text-gray-100">
                   <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
                     <img
-                      src={User?.UserImage}
+                      src={review?.UserImage}
                       alt="User_Image"
                       className="self-center flex-shrink-0 w-12 h-12 border rounded-full md:justify-self-start dark:bg-gray-500 dark:border-gray-700"
                     />

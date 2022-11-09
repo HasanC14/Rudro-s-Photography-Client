@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Faq from "../Faq/Faq";
 import Hero from "../Swiper/Hero";
 
 const Home = () => {
@@ -59,6 +60,7 @@ const Home = () => {
           </Link>
         </div>
       </div>
+      <Faq></Faq>
     </div>
   );
 };
