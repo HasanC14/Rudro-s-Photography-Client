@@ -97,7 +97,7 @@ const ServiceDetails = () => {
                       <h4 className="text-lg font-semibold text-center md:text-left">
                         {review?.Username}
                       </h4>
-                      <p className="dark:text-gray-400">{review.UserReview}</p>
+                      <p className="dark:text-gray-400">{review?.UserReview}</p>
                     </div>
                   </div>
                 </div>
