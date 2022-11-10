@@ -9,6 +9,7 @@ const ServiceDetails = () => {
   const { User } = useContext(AuthContext);
   const { title, img, description, price, _id } = service;
   const [Reviews, setReviews] = useState([]);
+  const [update, setUpdate] = useState(false);
   const [Loading, setLoading] = useState(true);
   const HandleForm = (event) => {
     event.preventDefault();
@@ -51,8 +52,9 @@ const ServiceDetails = () => {
       .then((data) => {
         setReviews(data);
         setLoading(false);
+        setUpdate(!update);
       });
-  }, []);
+  }, [_id, update]);
   return (
     <div className="max-w-screen-xl mx-auto">
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4 m-10">

@@ -60,6 +60,7 @@ const MyReviews = () => {
 
   const handleChange = (event) => {
     setNewReviews(event.target.value);
+    event.target.reset();
   };
   const HandleUpdate = (id) => {
     fetch(`https://rudro-photography-server.vercel.app/UpdateReview/${id}`, {
