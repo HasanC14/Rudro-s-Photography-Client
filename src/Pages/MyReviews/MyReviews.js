@@ -7,6 +7,7 @@ const MyReviews = () => {
   TabTitle("My Reviews");
   const { User } = useContext(AuthContext);
   const [Reviews, setReviews] = useState([]);
+  const [update, setUpdate] = useState(false);
   const [NewReviews, setNewReviews] = useState([]);
   useEffect(() => {
     fetch(
@@ -14,7 +15,7 @@ const MyReviews = () => {
     )
       .then((res) => res.json())
       .then((data) => setReviews(data));
-  }, [User]);
+  }, [User, update]);
 
   const HandleDelete = (id) => {
     swal("Are you sure you want to delete").then((value) => {
@@ -65,7 +66,9 @@ const MyReviews = () => {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ UpdatedReview: NewReviews }),
-    }).then((res) => res.json());
+    })
+      .then((res) => res.json())
+      .then((data) => setUpdate(!update));
   };
 
   return (
@@ -97,7 +100,12 @@ const MyReviews = () => {
                       <FaTrash className="w-7 "></FaTrash>
                     </button>
                   </div>
-                  <form className="w-full space-y-1 dark:text-gray-100 mt-3">
+                  <form
+                    className="w-full space-y-1 dark:text-gray-100 mt-3"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                    }}
+                  >
                     <label
                       htmlFor="UpdatedReview"
                       className="block text-lg font-medium"

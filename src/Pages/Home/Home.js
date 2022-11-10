@@ -9,7 +9,6 @@ import { TabTitle } from "../../TitleChange";
 const Home = () => {
   TabTitle("Home");
   const [Services, SetServices] = useState([]);
-
   useEffect(() => {
     fetch("https://rudro-photography-server.vercel.app/LimitServices")
       .then((res) => res.json())
@@ -65,7 +64,7 @@ const Home = () => {
         </div>
       </div>
       <Features></Features>
-      <Blog></Blog>
+      <Blog title={true}></Blog>
       <Faq></Faq>
     </div>
   );

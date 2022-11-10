@@ -1,8 +1,10 @@
 import React from "react";
 import { TabTitle } from "../../TitleChange";
 
-const Blog = () => {
-  TabTitle("Blog");
+const Blog = ({ title }) => {
+  if (!title) {
+    TabTitle("Blog");
+  }
   return (
     <div className="md:mb-20 max-w-screen-xl mx-auto ">
       <div className="md:mb-12 md:mt-10">
