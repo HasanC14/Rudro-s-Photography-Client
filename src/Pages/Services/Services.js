@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ImageViewer } from "react-image-viewer-dv";
+import { TabTitle } from "../../TitleChange";
 
 const Services = () => {
   const [Services, SetServices] = useState([]);
   const [Loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    TabTitle("Services");
+    fetch("https://rudro-photography-server.vercel.app/services")
       .then((res) => res.json())
       .then((data) => {
         SetServices(data);

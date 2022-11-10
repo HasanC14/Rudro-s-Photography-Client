@@ -1,12 +1,12 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB_KRicLmcBBQlPEy-Cy1AHgrCG-J4IuvA",
-  authDomain: "roudro-photography.firebaseapp.com",
-  projectId: "roudro-photography",
-  storageBucket: "roudro-photography.appspot.com",
-  messagingSenderId: "706408125349",
-  appId: "1:706408125349:web:b6879dc263305e11cb8e4c",
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
 };
 
 const app = initializeApp(firebaseConfig);

@@ -1,10 +1,8 @@
 import swal from "sweetalert";
-import { Helmet } from "react-helmet";
+import { TabTitle } from "../../TitleChange";
 
 const AddServices = () => {
-  <Helmet>
-    <title>Blog</title>
-  </Helmet>;
+  TabTitle("Add Service");
   const HandleForm = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -19,7 +17,7 @@ const AddServices = () => {
       description: description,
     };
 
-    fetch("http://localhost:5000/AddService", {
+    fetch("https://rudro-photography-server.vercel.app/AddService", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(service),

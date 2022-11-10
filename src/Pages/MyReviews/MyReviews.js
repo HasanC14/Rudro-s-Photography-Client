@@ -2,12 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 import { FaCheckCircle, FaTrash, FaEdit } from "react-icons/fa";
 import swal from "sweetalert";
+import { TabTitle } from "../../TitleChange";
 const MyReviews = () => {
+  TabTitle("My Reviews");
   const { User } = useContext(AuthContext);
   const [Reviews, setReviews] = useState([]);
   const [NewReviews, setNewReviews] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/MyReviews/?Username=${User?.displayName}`)
+    fetch(
+      `https://rudro-photography-server.vercel.app/MyReviews/?Username=${User?.displayName}`
+    )
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [User]);
@@ -28,7 +32,7 @@ const MyReviews = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/review/${id}`, {
+        fetch(`https://rudro-photography-server.vercel.app/review/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -57,7 +61,7 @@ const MyReviews = () => {
     setNewReviews(event.target.value);
   };
   const HandleUpdate = (id) => {
-    fetch(`http://localhost:5000/UpdateReview/${id}`, {
+    fetch(`https://rudro-photography-server.vercel.app/UpdateReview/${id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ UpdatedReview: NewReviews }),
@@ -88,58 +92,34 @@ const MyReviews = () => {
                   <div className="text-xl flex justify-between mt-5 ">
                     <button
                       onClick={() => HandleDelete(review._id)}
-                      className="border-2 border-white rounded-full p-2 hover:bg-white hover:text-gray-800"
+                      className="border-2 flex justify-center border-white rounded-full p-2 w-full hover:bg-white hover:text-gray-800"
                     >
-                      <FaTrash className="w-7"></FaTrash>
+                      <FaTrash className="w-7 "></FaTrash>
                     </button>
-                    <div className="flex justify-between mt-2">
-                      <label htmlFor="my-modal-3">
-                        <div className="border-2  border-white rounded-full p-2 hover:bg-white hover:text-gray-800">
-                          <FaEdit></FaEdit>
-                        </div>
-                      </label>
-
-                      <input
-                        type="checkbox"
-                        id="my-modal-3"
-                        className="modal-toggle"
-                      />
-                      <div className="modal">
-                        <div className="modal-box relative">
-                          <label
-                            htmlFor="my-modal-3"
-                            className="btn btn-sm btn-circle absolute right-2 top-2"
-                          >
-                            ✕
-                          </label>
-                          <form className="w-full space-y-1 dark:text-gray-100">
-                            <label
-                              htmlFor="UpdatedReview"
-                              className="block text-lg font-medium"
-                            >
-                              Edit Review
-                            </label>
-                            <div className="flex">
-                              <textarea
-                                type="text"
-                                name="UpdatedReview"
-                                id="UpdatedReview"
-                                onChange={handleChange}
-                                className="flex flex-1 text-right border sm:text-sm rounded-l-md focus:ring-inset dark:border-gray-700 dark:text-gray-100 dark:bg-gray-800 focus:ring-gray-400"
-                              />
-                              <button
-                                type="submit"
-                                onClick={() => HandleUpdate(review._id)}
-                              >
-                                <FaCheckCircle className="w-10 text-2xl" />
-                              </button>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                      <div></div>
-                    </div>
                   </div>
+                  <form className="w-full space-y-1 dark:text-gray-100 mt-3">
+                    <label
+                      htmlFor="UpdatedReview"
+                      className="block text-lg font-medium"
+                    >
+                      Edit Review
+                    </label>
+                    <div className="flex">
+                      <textarea
+                        type="text"
+                        name="UpdatedReview"
+                        id="UpdatedReview"
+                        onChange={handleChange}
+                        className="flex flex-1 text-right border sm:text-sm rounded-l-md focus:ring-inset dark:border-gray-700 dark:text-gray-100 dark:bg-gray-800 focus:ring-gray-400"
+                      />
+                      <button
+                        type="submit"
+                        onClick={() => HandleUpdate(review._id)}
+                      >
+                        <FaCheckCircle className="w-10 text-2xl" />
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>

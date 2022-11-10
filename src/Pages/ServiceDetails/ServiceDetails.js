@@ -30,7 +30,7 @@ const ServiceDetails = () => {
       Time: new Date(),
     };
 
-    fetch("http://localhost:5000/AddReview", {
+    fetch("https://rudro-photography-server.vercel.app/AddReview", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(ReviewInfo),
@@ -46,7 +46,7 @@ const ServiceDetails = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/?id=${_id}`)
+    fetch(`https://rudro-photography-server.vercel.app/reviews/?id=${_id}`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -107,7 +107,7 @@ const ServiceDetails = () => {
                 <p className="text-center text-2xl">
                   <Link to={"/Login"} className="hover:text-gray-400 underline">
                     Login
-                  </Link>{" "}
+                  </Link>
                   First to Add Review
                 </p>
               )}

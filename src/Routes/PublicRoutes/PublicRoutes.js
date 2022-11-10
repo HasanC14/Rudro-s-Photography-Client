@@ -41,7 +41,9 @@ export const routes = createBrowserRouter([
         path: "/Services/:id",
         element: <ServiceDetails></ServiceDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://rudro-photography-server.vercel.app/services/${params.id}`
+          ),
       },
     ],
   },
