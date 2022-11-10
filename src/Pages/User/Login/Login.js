@@ -17,7 +17,14 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     Login(email, password)
-      .then(() => {
+      .then((result) => {
+        const user = result.user;
+        const currentUser = { email: user.email };
+        fetch("https://rudro-photography-server.vercel.app/jwt", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(currentUser),
+        });
         navigate(from, { replace: true });
         swal({
           title: "Login Successful",

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
-import { FaCheckCircle, FaTrash, FaEdit } from "react-icons/fa";
+import { FaCheckCircle, FaTrash } from "react-icons/fa";
 import swal from "sweetalert";
 import { TabTitle } from "../../TitleChange";
 const MyReviews = () => {
